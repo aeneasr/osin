@@ -9,6 +9,7 @@ import (
 	"github.com/RangelReale/osin/example"
 	"net/http"
 	"net/url"
+	"github.com/ory-am/common/env"
 )
 
 func main() {
@@ -122,5 +123,6 @@ func main() {
 		w.Write([]byte(fmt.Sprintf("<a href=\"%s\">Download Token</a><br/>", cururl.String())))
 	})
 
-	http.ListenAndServe(":14000", nil)
+	port := env.Getenv("PORT", "14000")
+	http.ListenAndServe(":" + port, nil)
 }
